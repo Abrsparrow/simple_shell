@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Simple Shell
 ## Description
 This Shell program is a simple implementation of a command-line shell written in C.
@@ -17,7 +16,30 @@ Compilation:
 ```
 $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 ```
-=======
-# simple_shell
----
->>>>>>> 0914fa40df3e7e1b47c59df183243c67c588757d
+ Execute:
+```
+$ ./shell
+Shell-> 
+```
+## Examples
+Here's an example session demonstrating the usage of the shell program:
+```
+Shell-> ls
+README.md  fshell.c
+Shell-> pwd
+/home/user/shell
+Shell-> echo Hello, world!
+Hello, world!
+Shell-> exit 0
+```
+## Limitations
+This program has a few limitations:
++ Limited built-in commands: Only a few basic built-in commands, such as "exit", are supported.
++ No advanced features: The shell does not support advanced features like environment variables, I/O redirection, or piping.
++ Fixed command-line argument size: The maximum number of command-line arguments that can be provided is currently limited to 9.
+
+## Authors :black_nib:
+
+* Abraham Alemayehu -[Abrsparrow](https://github.com/Abrsparrow)
+* Ahmed Abdulwahid -[KillerA-z1](https://github.com/KillerA-z1)
+
