@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Simple Shell
 ## Description
 This Shell program is a simple implementation of a command-line shell written in C.
@@ -16,3 +17,7 @@ Compilation:
 ```
 $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 ```
+=======
+# simple_shell
+---
+>>>>>>> 0914fa40df3e7e1b47c59df183243c67c588757d
