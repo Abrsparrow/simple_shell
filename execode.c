@@ -5,21 +5,28 @@
  */
 void executeCommand(char *command)
 {
-	char **argv = parseCommand(command);
-
+	char **args = malloc(2 * sizeof(char *));
+	char *envp[] = {NULL};
 	int pid = fork();
+
+	if (args == NULL)
+	{
+		perror("Memory allocation error");
+		exit(1);
+	}
+
+	args[0] = command;
+	args[1] = NULL;
 
 	if (pid < 0)
 	{
 		perror("Fork error\n");
-		free(argv);
 		exit(1);
 	}
 	else if (pid == 0)
 	{
-		execve(argv[0], argv, environ);
 
-		free(argv);
+		execve(command, args, envp);
 		perror("./shell");
 		exit(EXIT_FAILURE);
 
@@ -28,6 +35,4 @@ void executeCommand(char *command)
 	{
 		wait(NULL);
 	}
-
-	free(argv);
 }

@@ -19,18 +19,17 @@ int main(void)
 
 		if (commandLength == -1)
 		{
-			perror("No such file or directory\n");
-			perror("command");
+			perror("getline");
 			free(command);
 			exit(1);
 		}
 		command[_strlen(command) - 1] = '\0';
-		if (_strcmp(command, "exit") == 0)
+		/* if (_strcmp(command, "exit") == 0)
 		{
 			free(command);
 			exit(0);
 		}
-
+ */
 		executeCommand(command);
 
 			if (!isatty(fileno(stdin)))
