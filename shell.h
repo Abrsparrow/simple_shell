@@ -10,7 +10,9 @@
 
 /* define Types */
 extern char **environ;
-/* Main FUnctions */
+/* helper_function */
+int _strlen(char *s);
+/* Main Functions */
 void executeCommand(char *command);
 char **parseCommand(char *command);
 
