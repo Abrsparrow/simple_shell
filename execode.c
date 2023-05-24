@@ -5,18 +5,7 @@
  */
 void executeCommand(char *command)
 {
-	char **args = malloc(2 * sizeof(char *));
-	char *envp[] = {NULL};
 	int pid = fork();
-
-	if (args == NULL)
-	{
-		perror("Memory allocation error");
-		exit(1);
-	}
-
-	args[0] = command;
-	args[1] = NULL;
 
 	if (pid < 0)
 	{
@@ -25,10 +14,18 @@ void executeCommand(char *command)
 	}
 	else if (pid == 0)
 	{
+		char *args[4];
+		char *envp[] = {NULL};
 
-		execve(command, args, envp);
-		perror("./shell");
+		args[0] = "/bin/sh";
+		args[1] = "-c";
+		args[2] = command;
+		args[3] = NULL;
+
+		execve("/bin/sh", args, envp);
+		perror("/bin/sh");
 		exit(EXIT_FAILURE);
+
 
 	}
 	else
