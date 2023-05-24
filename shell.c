@@ -5,14 +5,16 @@
  * Return: Always 0
  */
 int main(void)
-{
+{	
+	const char* print= "#cisfun$ ";
 	char *command = NULL;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
 
 	while (1)
 	{
-		printf(":) ");
+		write(STDOUT_FILENO, print, strlen(print));
+		fflush(stdout);
 		commandLength = getline(&command, &bufferSize, stdin);
 
 		if (commandLength == -1)
