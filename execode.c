@@ -34,9 +34,3 @@ void executeCommand(char *command)
 	free(argv);
 }
 
-
-
-
-
-
-
