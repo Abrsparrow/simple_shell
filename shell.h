@@ -1,5 +1,6 @@
 #ifndef SHELL_H
-#define SHELL_H/* Standard library */
+#define SHELL_H
+/* Standard library */
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
