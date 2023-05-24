@@ -12,11 +12,12 @@ int main(void)
 
 	while (1)
 	{
-		printf("cisfun");
+		printf("#cisfun$ ");
 		commandLength = getline(&command, &bufferSize, stdin);
+        
 		if (commandLength == -1)
 		{
-			printf("Error reading input\n");
+			perror("No such file or directory\n");
 			perror("command");
 			free(command);
 			exit(1);
@@ -27,23 +28,9 @@ int main(void)
 			free(command);
 			exit(0);
 		}
+
 		executeCommand(command);
-		{
-			printf("#cisfun$ ");
-			commandLength = getline(&command, &bufferSize, stdin);
-			if (commandLength == -1)
-			{
-				printf("Error reading input\n");
-				perror("command");
-				free(command);
-				exit(1);
-			}
-			command[strlen(command) - 1] = '\0';
-			if (strcmp(command, "exit") == 0)
-			{
-				free(command);
-				exit(0);
-			}
+
 			if (!isatty(fileno(stdin)))
 			{
 				break;

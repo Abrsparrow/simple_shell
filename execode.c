@@ -12,7 +12,7 @@ void executeCommand(char *command)
 
 	if (pid < 0)
 	{
-		printf("Fork error\n");
+		perror("Fork error\n");
 		free(argv);
 		exit(1);
 	}
@@ -20,7 +20,7 @@ void executeCommand(char *command)
 	{
 		execve(argv[0], argv, environ);
 
-		perror("Error executing command");
+		perror("./shell");
 		free(argv);
 		exit(1);
 	}
@@ -31,8 +31,3 @@ void executeCommand(char *command)
 
 	free(argv);
 }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 605dfacefb2b09afc7cb8c28399f47cbcc9b843e

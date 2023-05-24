@@ -10,7 +10,9 @@ char **parseCommand(char *command)
 	char **argv = malloc(10 * sizeof(char *));
 	char *token;
 	int  i = 0;
+
 	token = strtok(command, " ");
+
 	while (token != NULL && i < 9)
 	{
 		argv[i++] = token;
