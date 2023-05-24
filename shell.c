@@ -12,7 +12,7 @@ int main(void)
 
 	while (1)
         {
-                printf("Shell > ");
+                printf("#cisfun$ ");
                 commandLength = getline(&command, &bufferSize, stdin);
                 if (commandLength == -1)
                 {
@@ -21,12 +21,13 @@ int main(void)
                         free(command);
                         exit(1);
                 }
-                command[strlen(command) - 1] = '\0';                if (strcmp(command, "exit") == 0)
+                command[strlen(command) - 1] = '\0';
+
+                if (strcmp(command, "exit") == 0)
                 {
                         free(command);
                         exit(0);
                 }
-
 	
 	executeCommand(command);
 
