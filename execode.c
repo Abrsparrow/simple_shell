@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * executeCommand - Execute the command using execvp
+ * executeCommand - Execute the command using execve
  * @command: The command to execute
  */
 
@@ -20,7 +20,8 @@ void executeCommand(char *command)
 	else if (pid == 0)
 	{
 		/* printf("Executing command: %s\n", command); */
-		execvp(argv[0], argv);
+		char *envp[] = {NULL}; /* // Set the environment variables as per your requirements */
+		execve(argv[0], argv, envp);
 
 		perror("Error executing command");
 		free(argv);
@@ -33,10 +34,3 @@ void executeCommand(char *command)
 
 	free(argv);
 }
-
-
-
-
-
-
-
