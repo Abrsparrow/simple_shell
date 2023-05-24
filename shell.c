@@ -14,7 +14,7 @@ int main(void)
 	{
 		printf("#cisfun$ ");
 		commandLength = getline(&command, &bufferSize, stdin);
-        
+
 		if (commandLength == -1)
 		{
 			perror("No such file or directory\n");
