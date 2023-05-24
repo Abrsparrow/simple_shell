@@ -5,15 +5,15 @@
  * Return: Always 0
  */
 int main(void)
-{	
-	const char* print= "#cisfun$ ";
+{
+	const char *print = "#cisfun$ ";
 	char *command = NULL;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
 
 	while (1)
 	{
-		write(STDOUT_FILENO, print, strlen(print));
+		write(STDOUT_FILENO, print, _strlen(print));
 		fflush(stdout);
 		commandLength = getline(&command, &bufferSize, stdin);
 
@@ -24,8 +24,8 @@ int main(void)
 			free(command);
 			exit(1);
 		}
-		command[strlen(command) - 1] = '\0';
-		if (strcmp(command, "exit") == 0)
+		command[_strlen(command) - 1] = '\0';
+		if (_strcmp(command, "exit") == 0)
 		{
 			free(command);
 			exit(0);

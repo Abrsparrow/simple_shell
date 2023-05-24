@@ -11,7 +11,8 @@
 /* define Types */
 extern char **environ;
 /* helper_function */
-int _strlen(char *s);
+int _strlen(const char *s);
+int _strcmp(const char *s1, const char *s2);
 /* Main Functions */
 void executeCommand(char *command);
 char **parseCommand(char *command);
