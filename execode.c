@@ -32,7 +32,3 @@ void executeCommand(char *command)
 	free(argv);
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 605dfacefb2b09afc7cb8c28399f47cbcc9b843e
