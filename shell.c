@@ -5,7 +5,7 @@
  */
 int main(void)
 {
-	const char *print = "#cisfun$ ";
+	/* const char *print = "#cisfun$ "; */
 	char *command = NULL;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
@@ -13,13 +13,13 @@ int main(void)
 
 	while (1)
 	{
-		write(STDOUT_FILENO, print, _strlen(print));
-		fflush(stdout);
+		/* write(STDOUT_FILENO, print, _strlen(print));
+		fflush(stdout); */
 		commandLength = getline(&command, &bufferSize, stdin);
 
 		if (commandLength == -1)
 		{
-			perror("getline");
+			/* perror("./shell: No such file or directory"); */
 			free(command);
 			exit(EXIT_FAILURE);
 		}
