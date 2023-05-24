@@ -12,7 +12,7 @@ int main(void)
 
 	while (1)
         {
-                printf("Shell-> ");
+                printf("c is fun");
                 commandLength = getline(&command, &bufferSize, stdin);
                 if (commandLength == -1)
                 {
