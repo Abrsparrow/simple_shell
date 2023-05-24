@@ -33,6 +33,7 @@ void executeCommand(char *command)
 	}
 	else
 	{
+		free(args);
 		wait(NULL);
 	}
 }
