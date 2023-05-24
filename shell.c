@@ -6,13 +6,13 @@
  */
 int main(void)
 {
-  char *command = NULL;
-  size_t bufferSize = 0;
-  ssize_t commandLength;
+	char *command = NULL;
+	size_t bufferSize = 0;
+	ssize_t commandLength;
 
-  while (1)
+	while (1)
 <<<<<<< HEAD
-  {
+{
     printf("cisfun");
     commandLength = getline(&command, &bufferSize, stdin);
     if (commandLength == -1)
