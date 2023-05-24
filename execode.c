@@ -1,13 +1,12 @@
 #include "shell.h"
-
 /**
- * executeCommand - Execute the command using execvp
+ * executeCommand - Execute the command using execve
  * @command: The command to execute
  */
-
 void executeCommand(char *command)
 {
 	char **argv = parseCommand(command);
+	extern char **environ;
 
 	int pid = fork();
 
@@ -19,8 +18,7 @@ void executeCommand(char *command)
 	}
 	else if (pid == 0)
 	{
-		/* printf("Executing command: %s\n", command); */
-		execvp(argv[0], argv);
+		execve(argv[0], argv, environ);
 
 		perror("Error executing command");
 		free(argv);
@@ -34,3 +32,7 @@ void executeCommand(char *command)
 	free(argv);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 605dfacefb2b09afc7cb8c28399f47cbcc9b843e
