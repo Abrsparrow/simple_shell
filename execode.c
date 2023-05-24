@@ -25,12 +25,9 @@ void executeCommand(char *command)
 		execve("/bin/sh", args, envp);
 		perror("/bin/sh");
 		exit(EXIT_FAILURE);
-
-
 	}
 	else
 	{
-		free(args);
 		wait(NULL);
 	}
 }

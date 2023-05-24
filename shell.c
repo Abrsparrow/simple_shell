@@ -1,7 +1,6 @@
 #include "shell.h"
 /**
  * main - Simple Shell Program
- *
  * Return: Always 0
  */
 int main(void)
@@ -10,6 +9,7 @@ int main(void)
 	char *command = NULL;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
+	char *line;
 
 	while (1)
 	{
@@ -21,22 +21,23 @@ int main(void)
 		{
 			perror("getline");
 			free(command);
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		command[_strlen(command) - 1] = '\0';
-		/* if (_strcmp(command, "exit") == 0)
+		if (_strcmp(command, "exit") == 0)
 		{
 			free(command);
 			exit(0);
 		}
- */
-		executeCommand(command);
+		line = strtok(command, "\n");
 
-			if (!isatty(fileno(stdin)))
-			{
-				break;
+		while (line != NULL)
+		{
+			executeCommand(line);
+			line = strtok(NULL, "\n");
 			}
 		}
+
 		free(command);
 		return (0);
 	}
