@@ -6,7 +6,6 @@
 void executeCommand(char *command)
 {
 	char **argv = parseCommand(command);
-	extern char **environ;
 
 	int pid = fork();
 
@@ -20,9 +19,10 @@ void executeCommand(char *command)
 	{
 		execve(argv[0], argv, environ);
 
-		perror("./shell");
 		free(argv);
-		exit(1);
+		perror("./shell");
+		exit(EXIT_FAILURE);
+
 	}
 	else
 	{

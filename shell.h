@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+
+/* define Types */
+extern char **environ;
 /* Main FUnctions */
 void executeCommand(char *command);
 char **parseCommand(char *command);
