@@ -6,4 +6,8 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+/* Main FUnctions */
+void executeCommand(char *command);
+char **parseCommand(char *command);
+
 #endif
