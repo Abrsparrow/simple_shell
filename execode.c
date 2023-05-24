@@ -1,13 +1,12 @@
 #include "shell.h"
-
 /**
  * executeCommand - Execute the command using execve
  * @command: The command to execute
  */
-
 void executeCommand(char *command)
 {
 	char **argv = parseCommand(command);
+	extern char **environ;
 
 	int pid = fork();
 
@@ -19,9 +18,7 @@ void executeCommand(char *command)
 	}
 	else if (pid == 0)
 	{
-		/* printf("Executing command: %s\n", command); */
-		char *envp[] = {NULL}; /* // Set the environment variables as per your requirements */
-		execve(argv[0], argv, envp);
+		execve(argv[0], argv, environ);
 
 		perror("Error executing command");
 		free(argv);
@@ -34,3 +31,5 @@ void executeCommand(char *command)
 
 	free(argv);
 }
+
+
