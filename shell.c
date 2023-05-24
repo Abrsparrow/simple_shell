@@ -12,7 +12,7 @@ int main(void)
 
 	while (1)
         {
-                printf("c is fun");
+                printf("cisfun");
                 commandLength = getline(&command, &bufferSize, stdin);
                 if (commandLength == -1)
                 {
