@@ -5,7 +5,7 @@
  */
 void executeCommand(char *command)
 {
-	int pid = fork();
+    int pid = fork();
 
     if (pid < 0)
     {
@@ -14,43 +14,21 @@ void executeCommand(char *command)
     }
     else if (pid == 0)
     {
-        char *args[2] = {command, NULL};
-        char *path = getenv("PATH");
-        char *token;
-        char *pathCommand;
-        int execResult;
-
-        if (path == NULL)
+        char **args = malloc(4 * sizeof(char *));
+        if (args == NULL)
         {
-            perror("Unable to get PATH\n");
+            perror("Memory allocation error\n");
             exit(EXIT_FAILURE);
         }
+        
+        args[0] = "/bin/sh";
+        args[1] = "-c";
+        args[2] = command;
+        args[3] = NULL;
 
-        token = strtok(path, ":");
-        while (token != NULL)
-        {
-            pathCommand = malloc(strlen(token) + strlen(command) + 2);
-            if (pathCommand == NULL)
-            {
-                perror("Malloc error\n");
-                exit(EXIT_FAILURE);
-            }
-            _strcpy(pathCommand, token);
-            strcat(pathCommand, "/");
-            strcat(pathCommand, command);
-
-            execResult = execve(pathCommand, args, environ);
-            free(pathCommand);
-
-            if (execResult != -1)
-            {
-                break;
-            }
-
-            token = strtok(NULL, ":");
-        }
-
-        perror(command);
+        /* char *envp[] = {NULL}; */
+        execve(args[0], args, environ);
+        perror(args[0]);
         exit(EXIT_FAILURE);
     }
     else
