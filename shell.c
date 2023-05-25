@@ -14,8 +14,11 @@ int main(void)
 
 	while (1)
 	{
+		if (!isPiped)
+		{
 		write(STDOUT_FILENO, prompt, _strlen(prompt));
 		fflush(stdout);
+		}
 		commandLength = getline(&command, &bufferSize, stdin);
 
 		if (commandLength == -1)
