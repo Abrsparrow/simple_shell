@@ -5,7 +5,8 @@
  */
 int main(void)
 {
-	/* const char *print = "#cisfun$ "; */
+	int isPiped = !isatty(STDIN_FILENO);
+	const char *prompt = isPiped ? "" : "#cisfun$ ";
 	char *command = NULL;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
@@ -13,8 +14,8 @@ int main(void)
 
 	while (1)
 	{
-		/* write(STDOUT_FILENO, print, _strlen(print));
-		fflush(stdout); */
+		write(STDOUT_FILENO, prompt, _strlen(prompt));
+		fflush(stdout);
 		commandLength = getline(&command, &bufferSize, stdin);
 
 		if (commandLength == -1)
