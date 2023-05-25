@@ -26,7 +26,7 @@ int main(void)
 		{
 			/* perror("./shell: No such file or directory"); */
 			free(command);
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		command[_strlen(command) - 1] = '\0';
 		if (_strcmp(command, "exit") == 0)
