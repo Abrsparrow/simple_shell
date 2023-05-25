@@ -6,7 +6,7 @@
 int main(void)
 {
 	int isPiped = !isatty(STDIN_FILENO);
-	const char *prompt = isPiped ? "" : "#cisfun$ ";
+	const char *prompt = isPiped ? "" : "$ ";
 	char *command = NULL;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
