@@ -10,6 +10,8 @@
 
 /* define Types */
 extern char **environ;
+#define MAX_COMMAND_LENGTH 100
+
 /* helper_function */
 int _strlen(const char *s);
 int _strcmp(const char *s1, const char *s2);

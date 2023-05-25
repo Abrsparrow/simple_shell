@@ -5,45 +5,37 @@
  * @command: The command to execute
  * Return: Return 1 in case of any error
  */
-int executeCommand(char *command)
-{
-	pid_t pid = fork();
 
-	if (pid < 0)
-	{
-		perror("Fork error\n");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
-	{
-		char **args = malloc(4 * sizeof(char *));
 
-		if (args == NULL)
-		{
-			perror("Memory allocation error\n");
-			exit(EXIT_FAILURE);
-		}
-		args[0] = "/bin/sh";
-		args[1] = "-c";
-		args[2] = malloc(strlen(command) + 1);
-		strcpy(args[2], command);
-		args[3] = NULL;
-		/* char *envp[] = {NULL}; */
-		execve(args[0], args, environ);
-		perror(args[0]);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		int status;
+int executeCommand(char *command) {
+    pid_t pid;
 
-		wait(&status);
-		if (WIFEXITED(status))
-		{
-			int exit_status = WEXITSTATUS(status);
+    pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        return -1;
+    } else if (pid == 0) {
+       char** args = malloc(sizeof(char*) * 4);
+        args[0] = "/bin/sh";
+        args[1] = "-c";
+        args[2] = command;
+        args[3] = NULL;
 
-			return ((exit_status == 0) ? 0 : 1);
-		}
-	}
-	return (1);
+        execve(args[0], args, environ);
+        
+        perror("execve");
+        _exit(EXIT_FAILURE);
+    } else {
+        
+        int status;
+        if (waitpid(pid, &status, 0) == -1) {
+            perror("waitpid");
+            return -1;
+        }
+        if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_SUCCESS) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
 }

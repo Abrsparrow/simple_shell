@@ -11,6 +11,7 @@ int main(void)
 	size_t bufferSize = 0;
 	ssize_t commandLength;
 	char *line;
+	int ret_value;
 
 	while (1)
 	{
@@ -37,7 +38,10 @@ int main(void)
 
 		while (line != NULL)
 		{
-			executeCommand(line);
+			ret_value = executeCommand(line);
+        if (ret_value == -1) {
+            perror("./shell");
+        }
 			line = strtok(NULL, "\n");
 			}
 		}
