@@ -1,9 +1,11 @@
 #include "shell.h"
+#include <stdbool.h>
 /**
- * executeCommand - Execute the command using execve
+ * executeCommand- Execute the command using execve
  * @command: The command to execute
+ * Return: Return 1 in case of any error
  */
-void executeCommand(char *command)
+int executeCommand(char *command)
 {
 	pid_t pid = fork();
 
@@ -23,7 +25,8 @@ void executeCommand(char *command)
 		}
 		args[0] = "/bin/sh";
 		args[1] = "-c";
-		args[2] = command;
+		args[2] = malloc(strlen(command) + 1);
+		strcpy(args[2], command);
 		args[3] = NULL;
 		/* char *envp[] = {NULL}; */
 		execve(args[0], args, environ);
@@ -32,6 +35,15 @@ void executeCommand(char *command)
 	}
 	else
 	{
-		wait(NULL);
+		int status;
+
+		wait(&status);
+		if (WIFEXITED(status))
+		{
+			int exit_status = WEXITSTATUS(status);
+
+			return ((exit_status == 0) ? 0 : 1);
+		}
 	}
+	return (1);
 }

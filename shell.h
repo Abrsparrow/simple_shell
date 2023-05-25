@@ -14,7 +14,7 @@ extern char **environ;
 int _strlen(const char *s);
 int _strcmp(const char *s1, const char *s2);
 /* Main Functions */
-void executeCommand(char *command);
+int executeCommand(char *command);
 char **parseCommand(char *command);
 
 #endif
