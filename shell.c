@@ -20,7 +20,7 @@ int main(void)
 		write(STDOUT_FILENO, prompt, _strlen(prompt));
 		fflush(stdout);
 		}
-		commandLength = getline(&command, &bufferSize, stdin);
+		commandLength = _getline(&command, &bufferSize, stdin);
 
 		if (commandLength == -1)
 		{

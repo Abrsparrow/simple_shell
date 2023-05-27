@@ -16,6 +16,6 @@ extern char **environ;
 int _strlen(const char *s);
 int _strcmp(const char *s1, const char *s2);
 /* Main Functions */
-char **parseCommand(char *command);
+int executeCommand(char *command);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 #endif

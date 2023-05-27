@@ -40,4 +40,12 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		inputBuffer[characterCount] = currentChar;
 		characterCount++;
 	}
+	inputBuffer[characterCount] = '\0';
+
+	*lineptr = inputBuffer, *n = characterCount;
+	bytes_read = characterCount;
+	if (read_result != 0)
+		characterCount = 0;
+
+	return (bytes_read);
 }
