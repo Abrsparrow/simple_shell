@@ -5,13 +5,11 @@
  */
 int main(void)
 {
-	int isPiped = !isatty(STDIN_FILENO);
+	int ret_value, isPiped = !isatty(STDIN_FILENO);
 	const char *prompt = isPiped ? "" : "$ ";
-	char *command = NULL;
+	char *command = NULL, *line;
 	size_t bufferSize = 0;
 	ssize_t commandLength;
-	char *line;
-	int ret_value;
 
 	while (1)
 	{
@@ -24,7 +22,6 @@ int main(void)
 
 		if (commandLength == -1)
 		{
-			/* perror("./shell: No such file or directory"); */
 			free(command);
 			exit(EXIT_SUCCESS);
 		}
@@ -39,13 +36,13 @@ int main(void)
 		while (line != NULL)
 		{
 			ret_value = executeCommand(line);
-        if (ret_value == -1) {
-            perror("./shell");
-        }
-			line = strtok(NULL, "\n");
+			if (ret_value == -1)
+			{
+				perror("./shell");
 			}
+			line = strtok(NULL, "\n");
 		}
-
-		free(command);
-		return (0);
 	}
+	free(command);
+	return (0);
+}
